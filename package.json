@@ -1,0 +1,13 @@
+{
+  "name": "api_database",
+  "private": true,
+  "scripts": {
+    "dev:api": "pnpm --filter api run start:dev",
+    "dev:web": "pnpm --filter web run dev",
+    "dev": "concurrently \"pnpm run dev:api\" \"pnpm run dev:web\""
+  },
+  "packageManager": "pnpm@11.17.0",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

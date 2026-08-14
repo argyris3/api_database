@@ -1,0 +1,33 @@
+{
+  "name": "apiDatabase-js",
+  "version": "1.0.0",
+  "description": "The official Javascript SDK for Api_Database",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@apiDatabase/constants": "workspace:*",
+    "socket.io-client": "^4.8.3",
+    "uploadthing": "^7.7.4"
+  },
+  "devDependencies": {
+    "@apiDatabase/types": "workspace:*",
+    "tsdown": "^0.22.14",
+    "typescript": "^7.0.2"
+  }
+}
