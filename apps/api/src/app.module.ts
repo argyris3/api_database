@@ -12,6 +12,7 @@ import { ProjectApiModule } from './project-api/project-api.module';
 import { SqlEditorModule } from './sql-editor/sql-editor.module';
 import { RealtimeModule } from './realtime/realtime.module';
 import { StorageModule } from './storage/storage.module';
+import { ProjectAuthModule } from './project-auth/project-auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { StorageModule } from './storage/storage.module';
     SqlEditorModule,
     RealtimeModule,
     StorageModule,
+    ProjectAuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -27,6 +27,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -37,6 +38,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { signOut } from "@/features/auth/sign-out";
+import { cn } from "@/lib/utils";
 import { OrganizationWithMeta } from "@apiDatabase/types";
 
 const orgNavItem = { icon: Home, label: "Home", segment: "projects" } as const;
@@ -69,6 +71,33 @@ function buildNavHref(
   return `/organizations/${orgSlug}/projects`;
 }
 
+function isNavItemActive(
+  pathname: string,
+  orgSlug: string | undefined,
+  projectSlug: string | undefined,
+  segment: string,
+  scope: "org" | "project",
+): boolean {
+  if (!orgSlug) return false;
+
+  if (scope === "org") {
+    return pathname === `/organizations/${orgSlug}/projects`;
+  }
+
+  if (!projectSlug) return false;
+
+  const base = `/organizations/${orgSlug}/${projectSlug}/${segment}`;
+  return pathname === base || pathname.startsWith(`${base}/`);
+}
+
+function navLinkClass(isActive: boolean) {
+  return cn(
+    "bg-transparent text-muted-foreground shadow-none",
+    "hover:bg-muted/60 hover:text-foreground",
+    isActive && "bg-muted font-medium text-foreground hover:bg-muted",
+  );
+}
+
 interface AppSidebarProps {
   orgs: OrganizationWithMeta[];
   user: { email: string; name: string | null };
@@ -80,6 +109,20 @@ export function AppSidebar({ orgs, user }: AppSidebarProps) {
   const currentOrg = orgs.find((org) => org.slug === params?.slug) ?? orgs[0];
   const orgSlug = params?.slug;
   const projectSlug = params?.projectSlug;
+
+  const homeHref = buildNavHref(
+    orgSlug,
+    projectSlug,
+    orgNavItem.segment,
+    "org",
+  );
+  const isHomeActive = isNavItemActive(
+    pathname,
+    orgSlug,
+    projectSlug,
+    orgNavItem.segment,
+    "org",
+  );
 
   return (
     <Sidebar collapsible="icon">
@@ -141,34 +184,22 @@ export function AppSidebar({ orgs, user }: AppSidebarProps) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-1 px-0 py-1">
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={
-                    pathname ===
-                    buildNavHref(
-                      orgSlug,
-                      projectSlug,
-                      orgNavItem.segment,
-                      "org",
-                    )
-                  }
+                  isActive={false}
                   tooltip={orgNavItem.label}
+                  className={navLinkClass(isHomeActive)}
                 >
-                  <Link
-                    href={buildNavHref(
-                      orgSlug,
-                      projectSlug,
-                      orgNavItem.segment,
-                      "org",
-                    )}
-                  >
+                  <Link href={homeHref}>
                     <orgNavItem.icon />
                     <span>{orgNavItem.label}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              <SidebarSeparator className="my-2 group-data-[collapsible=icon]:hidden" />
 
               {projectNavItems.map(({ icon: Icon, label, segment }) => {
                 const href = buildNavHref(
@@ -177,14 +208,21 @@ export function AppSidebar({ orgs, user }: AppSidebarProps) {
                   segment,
                   "project",
                 );
-                const isActive = pathname === href;
+                const isActive = isNavItemActive(
+                  pathname,
+                  orgSlug,
+                  projectSlug,
+                  segment,
+                  "project",
+                );
 
                 return (
                   <SidebarMenuItem key={label}>
                     <SidebarMenuButton
                       asChild
-                      isActive={isActive}
+                      isActive={false}
                       tooltip={label}
+                      className={navLinkClass(isActive)}
                     >
                       <Link href={href}>
                         <Icon />
@@ -230,7 +268,11 @@ export function AppSidebar({ orgs, user }: AppSidebarProps) {
                 align="start"
               >
                 <DropdownMenuItem asChild>
-                  <Link href="/settings">Settings</Link>
+                  <Link
+                    href={`/organizations/${orgSlug ?? currentOrg?.slug}/settings/members`}
+                  >
+                    Settings
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

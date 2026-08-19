@@ -27,7 +27,7 @@ export default async function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar orgs={orgs} user={user} />
-      <SidebarInset>{children}</SidebarInset>
+      <SidebarInset className="bg-background">{children}</SidebarInset>
     </SidebarProvider>
   );
 }

@@ -29,9 +29,7 @@ export default async function OrganizationsPage() {
               <Building2 size={18} className="text-muted-foreground" />
             </div>
             <div className="min-w-0">
-              <p className="font-medium text-sm truncate">
-                {"ORGANIZATION NAME"}
-              </p>
+              <p className="font-medium text-sm truncate">{org.name}</p>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {org.projectCount}{" "}
                 {org.projectCount === 1 ? "project" : "projects"} -{" "}

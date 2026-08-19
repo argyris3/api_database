@@ -16,7 +16,7 @@ export class ApiDatabaseClient {
     this.db = new ApiDatabaseDb(projectUrl, apiKey);
     this.realtime = new apiDatabaseRealtime(projectUrl, apiKey);
     this.storage = new ApiDatabaseStorage(projectUrl, apiKey);
-    this.auth = new ApiDatabaseAuth(projectUrl, apiKey);
+    this.auth = new ApiDatabaseAuth(projectUrl);
   }
 
   from<T = Record<string, unknown>>(table: string) {

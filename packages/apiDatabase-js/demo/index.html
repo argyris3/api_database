@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Supavolt SDK Demo</title>
+    <title>API_DATABASE SDK Demo</title>
     <style>
       body {
         font-family: monospace;
@@ -71,7 +71,7 @@
     </style>
   </head>
   <body>
-    <h1>⚡ ApiDatabase SDK Demo</h1>
+    <h1>⚡ Supavolt SDK Demo</h1>
 
     <p>Open this page in two tabs. Subscribe in one, insert in the other.</p>
 
@@ -86,7 +86,7 @@
       <input id="apiKey" placeholder="API key (service role for insert)" />
       <p class="hint">Service role for writes · anon key for read + realtime</p>
       <br /><br />
-      <button type="button" onclick="init()">Connect</button>
+      <button type="button" onclick='init()'>Connect</button>
     </div>
 
     <div id="app" style="display: none">
@@ -117,6 +117,12 @@
       />
       <button type="button" onclick="listFiles()">List files</button>
       <pre id="storageResult">—</pre>
+      <h2>🔐 Auth — Sign up / Sign in</h2>
+      <input id="authEmail" type="email" placeholder="Email" />
+      <input id="authPassword" type="password" placeholder="Password (min 8)" />
+      <button type="button" onclick="signUp()">Sign Up</button>
+      <button type="button" onclick="signIn()">Sign In</button>
+      <pre id="authResult">—</pre>
     </div>
 
     <script type="module">
@@ -130,7 +136,7 @@
         const apiKey = document.getElementById('apiKey').value.trim();
         apiDatabase = createClient(projectUrl, apiKey);
         document.getElementById('app').style.display = 'block';
-        console.log('✅ Supavolt client initialized');
+        console.log('✅ apidatabase client initialized');
       };
 
       window.insertRow = async function () {
@@ -180,6 +186,24 @@
         const { data, error } = await apiDatabase.storage.from(bucketName).list();
 
         document.getElementById('storageResult').textContent = error
+          ? `Error: ${error}`
+          : JSON.stringify(data, null, 2);
+      };
+
+      window.signUp = async function () {
+        const email = document.getElementById('authEmail').value.trim();
+        const password = document.getElementById('authPassword').value;
+        const { data, error } = await apiDatabase.auth.signUp({ email, password });
+        document.getElementById('authResult').textContent = error
+          ? `Error: ${error}`
+          : JSON.stringify(data, null, 2);
+      };
+
+      window.signIn = async function () {
+        const email = document.getElementById('authEmail').value.trim();
+        const password = document.getElementById('authPassword').value;
+        const { data, error } = await apiDatabase.auth.signIn({ email, password });
+        document.getElementById('authResult').textContent = error
           ? `Error: ${error}`
           : JSON.stringify(data, null, 2);
       };
