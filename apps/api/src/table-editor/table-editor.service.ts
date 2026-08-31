@@ -33,6 +33,7 @@ export class TableEditorService {
       uuid: 'uuid',
       jsonb: 'jsonb',
       numeric: 'numeric',
+      array: 'array',
     };
     return map[pgType] ?? 'text';
   }
@@ -47,6 +48,7 @@ export class TableEditorService {
       uuid: 'UUID',
       jsonb: 'JSONB',
       numeric: 'NUMERIC',
+      array: 'ARRAY',
     };
     return map[type] ?? 'TEXT';
   }

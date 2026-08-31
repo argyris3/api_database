@@ -24,6 +24,7 @@ export const COLUMN_TYPES = [
   "uuid",
   "jsonb",
   "numeric",
+  "array",
 ] as const;
 
 export const TABLE_EDITOR_INTENT = {

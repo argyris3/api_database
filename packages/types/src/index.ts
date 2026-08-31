@@ -105,7 +105,8 @@ export type ColumnType =
   | "timestamp"
   | "uuid"
   | "jsonb"
-  | "numeric";
+  | "numeric"
+  | "array";
 
 export interface TableColumn {
   name: string;
