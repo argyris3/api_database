@@ -2,6 +2,12 @@
   "name": "ta_data_mas",
   "private": false,
   "version": "1.0.1",
+  "license": "MIT",
+  "keywords": [
+    "API's",
+    "Postgres SQL",
+    "data"
+  ],
   "scripts": {
     "dev:api": "pnpm --filter api run start:dev",
     "dev:web": "pnpm --filter web run dev",
