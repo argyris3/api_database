@@ -1,5 +1,5 @@
 {
-  "name": "apiDatabase-js",
+  "name": "ta_data_mas-js",
   "version": "1.0.0",
   "description": "The official Javascript SDK for Api_Database",
   "main": "./dist/index.js",

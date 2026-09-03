@@ -1,6 +1,7 @@
 {
-  "name": "api_database",
-  "private": true,
+  "name": "ta_data_mas",
+  "private": false,
+  "version": "1.0.0",
   "scripts": {
     "dev:api": "pnpm --filter api run start:dev",
     "dev:web": "pnpm --filter web run dev",
