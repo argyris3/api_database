@@ -1,0 +1,4 @@
+{
+  "installCommand": "cd ../.. && npx --yes pnpm@10.9.0 -v && npx --yes pnpm@10.9.0 install --frozen-lockfile",
+  "buildCommand": "cd ../.. && npx --yes pnpm@10.9.0 --filter web build"
+}
