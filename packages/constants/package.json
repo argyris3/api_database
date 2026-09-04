@@ -1,7 +1,6 @@
 {
   "name": "@apiDatabase/constants",
-  "version": "1.0.0",
-  "private": "false",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts"
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts"
 }
