@@ -1,10 +1,30 @@
 {
-  "name": "ta_data_mas-js",
-  "version": "1.0.0",
-  "description": "The official Javascript SDK for Api_Database",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "name": "ta_data_mas",
+  "version": "0.1.1",
+  "description": "Official JavaScript SDK for api database. For educational purposes only — not intended for production ",
+  "author": "Argyrios",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "directory": "packages/apiDatabase-js"
+  },
+  "keywords": [
+    "api_data",
+    "backend",
+    "database",
+    "realtime",
+    "auth",
+    "storage"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -16,18 +36,14 @@
     "build": "tsdown",
     "dev": "tsdown --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
+  "packageManager": "pnpm@10.9.0",
   "dependencies": {
-    "@apiDatabase/constants": "workspace:*",
     "socket.io-client": "^4.8.3",
     "uploadthing": "^7.7.4"
   },
   "devDependencies": {
     "@apiDatabase/types": "workspace:*",
-    "tsdown": "^0.22.14",
-    "typescript": "^7.0.2"
+    "tsdown": "^0.22.3",
+    "typescript": "^6.0.3"
   }
 }
