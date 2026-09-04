@@ -16,5 +16,8 @@
   "packageManager": "pnpm@11.17.0",
   "devDependencies": {
     "concurrently": "^10.0.3"
+  },
+  "dependencies": {
+    "@apiDatabase/constants": "^1.0.0"
   }
 }
