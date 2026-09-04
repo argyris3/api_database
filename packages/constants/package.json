@@ -1,6 +1,10 @@
 {
   "name": "@apiDatabase/constants",
-  "version": "0.0.1",
-  "private": false,
-  "main": "./src/index.ts"
+  "version": "1.0.0",
+  "private":"false",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  }
 }
